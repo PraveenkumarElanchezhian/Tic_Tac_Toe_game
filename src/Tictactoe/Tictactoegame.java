@@ -8,33 +8,10 @@ public class Tictactoegame {
 public static void main(String[] args) {
 	System.out.println("Welcome to Tic Tac Toe game");
 	Tictactoegame rv1 = new Tictactoegame();
-	rv1.tictacboard();
 	rv1.user_choice();
+	rv1.tictacboard();
+	
 }
-void tictacboard()
-{
-	char[][] board = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
-			printBoard(board);
-			    }
-private static void printBoard(char[][] board) {
-			System.out.print((board[0][0]));
-			System.out.print("|");
-			System.out.print((board[0][1]));
-			System.out.print("|");
-			System.out.println((board[0][2]));
-			System.out.println("-----");
-			System.out.print((board[1][0]));
-			System.out.print("|");
-			System.out.print((board[1][1]));
-			System.out.print("|");
-			System.out.println((board[1][2]));
-			System.out.println("-----");
-			System.out.print((board[2][0]));
-			System.out.print("|");
-			System.out.print((board[2][1]));
-			System.out.print("|");
-			System.out.println((board[2][2]));
-			}
 void user_choice() {
 	Scanner rv1 = new Scanner(System.in);
 	System.out.println("choose a letter x or o");
@@ -53,4 +30,29 @@ void user_choice() {
 		System.out.println("Invalid character");
 	}
 }
+void tictacboard()
+{
+	char[][] board = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
+			showBoard(board);
+			    }
+private static void showBoard(char[][] board) {
+			System.out.print((board[0][0]));
+			System.out.print("|");
+			System.out.print((board[0][1]));
+			System.out.print("|");
+			System.out.println((board[0][2]));
+			System.out.println("-----");
+			System.out.print((board[1][0]));
+			System.out.print("|");
+			System.out.print((board[1][1]));
+			System.out.print("|");
+			System.out.println((board[1][2]));
+			System.out.println("-----");
+			System.out.print((board[2][0]));
+			System.out.print("|");
+			System.out.print((board[2][1]));
+			System.out.print("|");
+			System.out.println((board[2][2]));
+			}
+
 	}
