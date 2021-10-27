@@ -3,6 +3,8 @@ package Tictactoe;
 import java.util.Scanner;
 
 public class Tictactoegame {
+	public static int min = 1;
+	public static int max = 9;
 	static char[][] board = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
 	char player_letter = ' ';
 	char computer_letter = ' ';
@@ -10,9 +12,116 @@ public class Tictactoegame {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Tic Tac Toe game");
 		Tictactoegame rv1 = new Tictactoegame();
-		rv1.user_choice();
 		rv1.tictacboard();
-		rv1.usermove(board);
+		rv1.user_choice();
+		rv1.flipcoin();
+
+	}
+
+	void flipcoin() {
+		int player_one = 1;
+		int player_two = 0;
+		int input_move = 0;
+		int flip = (int) Math.floor(Math.random() * 10) % 2;
+		System.out.println("Toss won :" + (flip == 1 ? "player_one" : player_two));
+		player_one = flip;
+			for (int i = 1; i <= 9; i++) 
+			{
+				if (player_one == 1) {
+					Scanner rv1 = new Scanner(System.in);
+					System.out.println("User_input - print between the number from 1 to 9");
+					input_move = rv1.nextInt();
+				} else {
+					player_two = 0;
+					input_move = (int) Math.floor(Math.random() * (max - min + 1) + min);
+					System.out.println("random :" + input_move);
+				}
+					switch (input_move) {
+					case 1:
+						if (board[0][0] == ' ') {
+							board[0][0] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 2:
+						if (board[0][1] == ' ') {
+							board[0][1] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 3:
+						if (board[0][2] == ' ') {
+							board[0][2] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 4:
+						if (board[1][0] == ' ') {
+							board[1][0] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 5:
+						if (board[1][1] == ' ') {
+							board[1][1] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 6:
+						if (board[1][2] == ' ') {
+							board[1][2] = GetLetter(player_one);
+							;
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 7:
+						if (board[2][0] == ' ') {
+							board[2][0] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 8:
+						if (board[2][1] == ' ') {
+							board[2][1] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					case 9:
+						if (board[2][2] == ' ') {
+							board[2][2] = GetLetter(player_one);
+						} else {
+							System.out.println("This place is not free");
+						}
+						break;
+					}
+				
+				
+				showBoard(board);
+				if (player_one == 1)
+					player_one = 0;
+				else
+					player_one = 1;
+			}
+		
+	}
+
+	char GetLetter(int isPlayer_one) {
+		/*
+		 * if(isPlayer_one == 1) { return player_letter; }
+		 */
+
+		if (isPlayer_one == 1)
+			return player_letter;
+		else
+			return computer_letter;
 
 	}
 
@@ -31,79 +140,6 @@ public class Tictactoegame {
 		} else {
 			System.out.println("Invalid character");
 		}
-	}
-
-	void usermove(char[][] board) {
-		int a;
-		Scanner rv2 = new Scanner(System.in);
-		System.out.println("Enter the number between 1 to 9 to make the move: ");
-		a = rv2.nextInt();
-		switch (a) {
-		case 1:
-			if (board[0][0] == ' ') {
-				board[0][0] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 2:
-			if (board[0][1] == ' ') {
-				board[0][1] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 3:
-			if (board[0][2] == ' ') {
-				board[0][2] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 4:
-			if (board[1][0] == ' ') {
-				board[1][0] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 5:
-			if (board[1][1] == ' ') {
-				board[1][1] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 6:
-			if (board[1][2] == ' ') {
-				board[1][2] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 7:
-			if (board[2][0] == ' ') {
-				board[2][0] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 8:
-			if (board[2][1] == ' ') {
-				board[2][1] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		case 9:
-			if (board[2][2] == ' ') {
-				board[2][2] = player_letter;
-			} else {
-				System.out.println("This place is not free");
-			}
-			break;
-		}
-		showBoard(board);
 	}
 
 	void tictacboard() {
