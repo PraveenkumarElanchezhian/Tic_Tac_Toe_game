@@ -1,5 +1,8 @@
 package Tictactoe;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Tictactoegame {
@@ -19,6 +22,7 @@ public class Tictactoegame {
 	}
 
 	void flipcoin() {
+		List<Integer> lista = new ArrayList<Integer>();
 		int player_one = 1;
 		int player_two = 0;
 		int input_move = 0;
@@ -31,11 +35,18 @@ public class Tictactoegame {
 					Scanner rv1 = new Scanner(System.in);
 					System.out.println("User_input - print between the number from 1 to 9");
 					input_move = rv1.nextInt();
+					while (lista.contains(input_move)) {
+						System.out.println("This place is already occupied Please re-enter between the number from 1 to 9");
+						input_move = input_move = rv1.nextInt();
+					}
 				} else {
 					player_two = 0;
 					input_move = (int) Math.floor(Math.random() * (max - min + 1) + min);
-					System.out.println("random :" + input_move);
-				}
+					while (lista.contains(input_move)) {
+						input_move = (int) Math.floor(Math.random() * (max - min + 1) + min);
+					}
+				} 
+				    lista.add(input_move);
 					switch (input_move) {
 					case 1:
 						if (board[0][0] == ' ') {
@@ -105,10 +116,34 @@ public class Tictactoegame {
 				
 				
 				showBoard(board);
+				String s = checkWinner();
+				if (s == "X") {
+					if (player_letter=='x')
+						System.out.println("Userplayer is winner");
+					else 
+					System.out.println("Computer is winner");
+					break;
+				}
+				else if (s == "O") {
+					if (player_letter=='o')
+						System.out.println("Userplayer is winner");
+					else 
+					System.out.println("Computer is winner");
+					break;
+				}
+				
+				else {}
+				
 				if (player_one == 1)
 					player_one = 0;
 				else
 					player_one = 1;
+				
+				if (lista.size() == 9) {
+					System.out.println("match is draw");
+					
+				}
+				
 			}
 		
 	}
@@ -165,6 +200,55 @@ public class Tictactoegame {
 		System.out.print((board[2][1]));
 		System.out.print("|");
 		System.out.println((board[2][2]));
+		System.out.println("************");
 	}
-
+	 static String checkWinner()
+	    {
+	        for (int a = 1; a <=9; a++) {
+	        	 String line = null;
+	  
+	            switch (a) {
+	            case 1:
+	            
+	                line = (converts_toString(board[0][0]) + converts_toString(board[0][1]) + converts_toString(board[0][2]));
+	                break;
+	            case 2:
+	            	line = (converts_toString(board[1][0]) + converts_toString(board[1][1]) +converts_toString(board[1][2]));
+	            	break;
+	            case 3:
+	            	line = (converts_toString(board[2][0]) + converts_toString(board[2][1]) + converts_toString(board[2][2]));
+	                break;
+	            case 4:
+	                line = (converts_toString(board[0][0]) + converts_toString(board[1][0]) + converts_toString(board[2][0]));
+	                break;
+	            case 5:
+	            	line = (converts_toString(board[0][1]) + converts_toString(board[1][1]) + converts_toString(board[2][1]));
+	                break;
+	            case 6:
+	            	line = (converts_toString(board[0][2]) + converts_toString(board[1][2]) + converts_toString(board[2][2]));
+	                break;
+	            case 7:
+	            	line = (converts_toString(board[0][0]) + converts_toString(board[1][1]) + converts_toString(board[2][2]));
+	                break;
+	            case 8:
+	            	line = (converts_toString(board[0][2]) + converts_toString(board[1][1]) + converts_toString(board[2][0]));
+	                break;
+	            }
+	            if (line != null && line.equals("xxx")) {
+	                return "X";
+	            }
+	            else if (line != null && line.equals("ooo")) {
+	                return "O";
+	            }
+	        }
+	         
+			/*
+			 * for (int a = 1; a<=9; a++) { if (Arrays.asList(board).contains(
+			 * String.valueOf(a + 1))) { break; } else if (a == 9) { return "draw"; } }
+			 */
+	        return "";
+   }
+	 static String converts_toString (char val) {
+		 return Character.toString(val);
+	 }
 }
